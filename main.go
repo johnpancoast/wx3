@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	cfgFile := os.Getenv("WX3_CONFIG");
+	cfgFile := os.Getenv("WX3_CONFIG")
 	if cfgFile == "" {
 		cfgFile = "/etc/wx3.toml"
 	}
@@ -17,6 +17,6 @@ func main() {
 	cfg  := toml.Parser{}.ParseFile(cfgFile)
 
 	if err := http.ListenAndServe(":"+strconv.Itoa(cfg.GetInt("server.port")), nil); err != nil {
-		log.Panic("Wx3 web server not started.")
+		log.Panic(err)
 	}
 }
